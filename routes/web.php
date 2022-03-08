@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    CampaignController,
     CategoryController,
     DashboardController
 };
@@ -34,6 +35,7 @@ Route::group([
     ], function () {
         //
         Route::resource('/category', CategoryController::class);
+        Route::resource('/campaign', CampaignController::class);
     });
 
     // Route Khusus Donatur

@@ -1,6 +1,6 @@
 <table {{ $attributes->merge(['class' => 'table table-striped mt-3']) }}>
     @isset($thead)
-    <thead>
+    <thead class="bg-primary">
         {{ $thead }}
     </thead>
     @endisset

@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/jqvmap/jqvmap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('/AdminLTE/dist/css/adminlte.min.css') }}">
+
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
@@ -31,6 +30,13 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/summernote/summernote-bs4.min.css') }}">
 
+    {{-- Css_Vendor --}}
+    @stack('css_vendor')
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('/AdminLTE/dist/css/adminlte.min.css') }}">
+    
     {{-- CSS --}}
     @stack('css')
 </head>
@@ -122,6 +128,10 @@
     <script src="{{ asset('/AdminLTE/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
+    {{-- Scripts_Vendor --}}
+    @stack('scripts_vendor')
+
     <!-- AdminLTE App -->
     <script src="{{ asset('/AdminLTE/dist/js/adminlte.js') }}"></script>
 

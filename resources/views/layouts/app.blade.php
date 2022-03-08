@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -26,9 +24,9 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
-    <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/summernote/summernote-bs4.min.css') }}">
+    {{--
+    <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/daterangepicker/daterangepicker.css') }}"> --}}
+
 
     {{-- Css_Vendor --}}
     @stack('css_vendor')
@@ -36,7 +34,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/dist/css/adminlte.min.css') }}">
-    
+
     {{-- CSS --}}
     @stack('css')
 </head>
@@ -121,11 +119,8 @@
     <!-- daterangepicker -->
     <script src="{{ asset('/AdminLTE/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('/AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
-    </script>
-    <!-- Summernote -->
-    <script src="{{ asset('/AdminLTE/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+
     <!-- overlayScrollbars -->
     <script src="{{ asset('/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
@@ -135,7 +130,24 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('/AdminLTE/dist/js/adminlte.js') }}"></script>
 
+    <script>
 
+        $('.custom-file-input').on('change', function() {
+            let filename = $(this).val().split('\\').pop();
+            
+            // $(this) adalah inputnya
+            $(this).next('.custom-file-label')
+                .addClass('selected')
+                .html(filename);
+        });
+
+        // Fungsi menampilkan Gambar yang diupload
+        function preview(target, image) {
+            $(target)
+                .attr('src', window.URL.createObjectURL(image))
+                .show();
+        }
+    </script>
     {{-- Scripts --}}
     @stack('scripts')
 </body>

@@ -12,9 +12,9 @@
     <div class="col-lg-12">
         <x-card>
             <x-slot name="header">
-                <a href="{{ route('campaign.create') }}" class="btn btn-sm btn-primary"><i
+                <button onclick="addForm(`{{ route('campaign.store') }}`)" class="btn btn-sm btn-primary"><i
                         class="fas fa-plus-circle"></i>
-                    Tambah</a>
+                    Tambah</button>
             </x-slot>
 
             <x-table>
@@ -32,8 +32,24 @@
         </x-card>
     </div>
 </div>
+
+{{-- Modal Form --}}
+@includeIf('campaign.form')
 @endsection
 
 <x-toast />
 @includeIf('includes.datatable')
+@includeIf('includes.select2')
+@includeIf('includes.summernote')
+@includeIf('includes.datepicker')
 
+
+@push('scripts')
+<script>
+    // Fungsi untuk membuat / Menampilkan Modal Form
+    function addForm(url) {
+        $('#modal-form').modal('show');
+    }
+</script>
+
+@endpush

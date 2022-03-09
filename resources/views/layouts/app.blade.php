@@ -28,13 +28,21 @@
     {{--
     <link rel="stylesheet" href="{{ asset('/AdminLTE/plugins/daterangepicker/daterangepicker.css') }}"> --}}
 
-
     {{-- Css_Vendor --}}
     @stack('css_vendor')
 
-
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/AdminLTE/dist/css/adminlte.min.css') }}">
+
+    <style>
+        .note-editor.note-frame.card.is-invalid {
+            margin-bottom: 0;
+        }
+
+        .note-editor.is-invalid {
+            border-color: red;
+        }
+    </style>
 
     {{-- CSS --}}
     @stack('css')

@@ -37,6 +37,7 @@ Route::group([
         Route::resource('/category', CategoryController::class);
 
         Route::get('/campaign/data', [CampaignController::class, 'data'])->name('campaign.data');
+        Route::get('/campaign/detail/{id}', [CampaignController::class, 'detail'])->name('campaign.detail');
         Route::resource('/campaign', CampaignController::class)->except('create', 'edit');
     });
 

@@ -19,4 +19,28 @@ class Campaign extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function statusColor()
+    {
+        $color = '';
+
+        switch ($this->status) {
+            case 'publish':
+                $color = 'success';
+                break;
+
+            case 'archived':
+                $color = 'dark';
+                break;
+
+            case 'pending':
+                $color = 'danger';
+                break;
+
+            default:
+                break;
+        }
+
+        return $color;
+    }
 }

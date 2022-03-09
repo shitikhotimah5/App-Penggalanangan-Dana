@@ -37,7 +37,7 @@
                 <li class="nav-header">MASTER</li>
                 <li class="nav-item">
                     <a href="{{ route('category.index') }}"
-                        class="nav-link {{ request()->is('category') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('category*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cube"></i>
                         <p>
                             Kategori
@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('campaign.index') }}"
-                        class="nav-link {{ request()->is('campaign') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('campaign*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th-large"></i>
                         <p>
                             Projek

@@ -20,7 +20,7 @@
             <x-table>
                 <x-slot name="thead">
                     <th width="5%">No</th>
-                    <th>Gambar</th>
+                    <th width="20%">Gambar</th>
                     <th>Deskripsi</th>
                     <th>Tgl Publish</th>
                     <th>Status</th>
@@ -49,7 +49,22 @@
     let modal = '#modal-form';
     let table;
 
-   table = $('.datatable').DataTable();
+   table = $('.datatable').DataTable({
+       processing: true,
+       autoWidth: false,
+       ajax: {
+           url: '{{ route('campaign.data') }}'
+       },
+       columns: [
+           {data:'DT_RowIndex', searchabel: false, sortable: false },
+           {data:'path_image', searchabel: false, sortable: false },
+           {data:'short_description'},
+           {data:'publish_date', searchabel: false },
+           {data:'status', searchabel: false, sortable: false },
+           {data:'author', searchabel: false},
+           {data:'action', searchabel: false, sortable: false },
+       ]
+   });
 
 
 
@@ -68,10 +83,21 @@
                 $(modal).modal('show');
                 $(`${modal} .modal-title`).text(title);
                 $(`${modal} form`).attr('action', url);
+                $(`${modal} [name=_method]`).val('PUT');
 
                 // Reset Form
                 resetForm(`${modal} form`);
                 loopForm(response.data);
+
+                // Trigger selest2 multiple
+                let selectedCategories = [];
+                response.data.categories.forEach(item => {
+                    selectedCategories.push(item.id);
+                });
+
+                // Trigger
+                $('#categories').val(selectedCategories).trigger('change');
+
             })
             .fail(errors => {
                 alert('Tidak dapat menampilkan data');
@@ -129,16 +155,24 @@
     function loopForm(originalForm) {
         for (field in originalForm) {
             if ($(`[name=${field}]`).attr('type') != 'file') {
-
+                // cek kondisi summernote
                 if ($(`[name=${field}]`).hasClass('summernote')) {
                     $(`[name=${field}]`).summernote('code', originalForm[field]);
                 }
+                else if ($(`[name=${field}]`).attr('type') == 'radio') {
+                    $(`[name=${field}]`).filter(`[value="${originalForm[field]}"]`).prop('checked', true);
+                }
+                else {
+                    $(`[name=${field}]`).val(originalForm[field]);
+                }
 
-
-                $(`[name=${field}]`).val(originalForm[field]);
                 $('select').trigger('change');
+            } // end if
+            else {
+                $(`.preview-${field}`).attr('src', originalForm[field]).show();
             }
         }
+        // end For
     }
 
     function loopErrors(errors) {

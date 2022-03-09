@@ -3,6 +3,8 @@
         Tambah
     </x-slot>
 
+    @method('POST')
+
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
@@ -15,8 +17,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="categories">Kategori</label>
-                <select type="text" name="categories" id="categories" class="form-control select2">
-                    <option disabled selected>Pilih Kategori</option>
+                <select type="text" name="categories[]" id="categories" class="form-control select2" multiple>
                     @foreach ($category as $key => $item)
                     <option value="{{ $key }}">{{ $item }}</option>
                     @endforeach
@@ -96,19 +97,21 @@
             <div class="form-group">
                 <label for="receiver">Penerima</label>
                 <div class="custom-control custom-radio">
-                    <input type="radio" name="receiver" class="custom-control-input" id="saya">
+                    <input type="radio" name="receiver" class="custom-control-input" id="saya" value="Saya Sendiri">
                     <label class="custom-control-label font-weight-normal" for="saya">Saya Sendiri</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" name="receiver" class="custom-control-input" id="keluarga">
+                    <input type="radio" name="receiver" class="custom-control-input" id="keluarga"
+                        value="Keluarga / Kerabat">
                     <label class="custom-control-label font-weight-normal" for="keluarga">Keluarga / Kerabat</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" name="receiver" class="custom-control-input" id="organisasi">
+                    <input type="radio" name="receiver" class="custom-control-input" id="organisasi"
+                        value="Organisasi / Lembaga">
                     <label class="custom-control-label font-weight-normal" for="organisasi">Organisasi / Lembaga</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" name="receiver" class="custom-control-input" id="lainnya">
+                    <input type="radio" name="receiver" class="custom-control-input" id="lainnya" value="Lainnya">
                     <label class="custom-control-label font-weight-normal" for="lainnya">Lainnya</label>
                 </div>
             </div>
